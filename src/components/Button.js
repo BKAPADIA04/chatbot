@@ -5,9 +5,8 @@ export default function Button(props) {
   return (
     <>
       <div className="buttonClass mx-2">
-        <button type="button" className="btn btn-outline-dark btn-rounded">
-          {subject}
-        </button>
+        <input type="button" style = {{width:'10vw'}} className="btn btn-outline-dark btn-rounded" value={subject} onClick={props.ClickOptions}>
+        </input>
       </div>
     </>
   );

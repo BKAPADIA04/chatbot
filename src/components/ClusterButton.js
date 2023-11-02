@@ -19,7 +19,7 @@
 import React from "react";
 import Button from "./Button";
 
-export default function ClusterButton() {
+export default function ClusterButton(props) {
   // const pain_part = ["Bone","Muscle_Ligaments","Benc"];
   const articles = {
     users: [
@@ -40,26 +40,32 @@ export default function ClusterButton() {
     intensity_pain: {
       questions: ["Pain At Rest", "Localized", "Persistent"],
       index: 0,
+      topic:"Intensity Of Pain"
     },
     duration_pain: {
       questions: ["Acute", "Chronic"],
       index: 1,
+      topic:"Duration Of Pain"
     },
     swelling: {
       questions: ["Mild", "Moderate", "Severe"],
       index: 2,
+      topic:"Swelling"
     },
     joint_stiffness: {
       questions: ["Mild", "Moderate", "Severe"],
       index: 3,
+      topic:"Stiffness in Joints"
     },
     medical_history: {
       questions: ["No", "Yes"],
       index: 4,
+      topic:"Any Medical History"
     },
     age: {
       questions: ["10", "20", "30"],
       index: 5,
+      topic:"Age"
     },
   };
 
@@ -88,9 +94,9 @@ export default function ClusterButton() {
 
 //   }
 
-  const search = "medical_history";
+  const search = props.search;
 
-  const pain_part_question = ortho_bones.swelling.questions; //Can be optimized using integral addresses
+  // const pain_part_question = ortho_bones.swelling.questions; //Can be optimized using integral addresses
   const pain_part_question_dummy = ortho_bones[search].questions;
 
   return (
@@ -98,7 +104,7 @@ export default function ClusterButton() {
       {pain_part_question_dummy.map((element, index) => {
         return (
           <div className="col-md-4 my-2" key={index}>
-            <Button subject={element} />
+            <Button subject={element} ClickOptions = {props.ClickOptions}/>
           </div>
         );
       })}

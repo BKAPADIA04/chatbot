@@ -49,6 +49,13 @@ export default function Client() {
     setname(event.target.value);
   };
 
+  const ClickOptions = async (event) => {
+    console.log(event.target.value);
+    setmessage(event.target.value);
+    sendMessage();
+  }
+
+
   useEffect(() => {
     socket.on("receive_message", (data) => {
       setchat(data);
@@ -77,7 +84,7 @@ export default function Client() {
         </div>
       ) : (
         <div>
-          <Chat texts={chat} name={name} date={date} message = {message} onChangeHandler = {handlemessage} onClickHandler = {sendMessage} />
+          <Chat ClickOptions = {ClickOptions} texts={chat} name={name} date={date} message = {message} onChangeHandler = {handlemessage} onClickHandler = {sendMessage} />
         </div>
       )}
     </div>
