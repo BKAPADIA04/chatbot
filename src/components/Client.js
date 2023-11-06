@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Chat from "./Chat";
 import "./chat.css";
+import chatbotQuestions from './chatbotQuestions'; 
 const { io } = require("socket.io-client");
 const socket = io.connect("https://chatapp-backend-o061.onrender.com");
 // import { useEffect } from 'react'
@@ -15,6 +16,7 @@ export default function Client() {
   const [mesreceived, setmesreceived] = useState(false); //chat received from backend
   const [room, setroom] = useState("");
   const [name, setname] = useState("");
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const sendMessage = async () => {
     let send = {
       message: message,
@@ -49,9 +51,35 @@ export default function Client() {
     setname(event.target.value);
   };
 
+  function handleAnswerClick(selectedAnswer) {
+    // Find the question that contains the selected answer
+    const questionWithSelectedAnswer = chatbotQuestions.find(question => {
+      return question.answer.some(option => {
+        return option[0].toLowerCase() === selectedAnswer.toLowerCase(); // Case-insensitive comparison
+      });
+    });
+  
+    // If a question with the selected answer is found, log the value at the first index of the answer
+    if (questionWithSelectedAnswer) {
+      const selectedAnswerIndex = questionWithSelectedAnswer.answer.findIndex(option => {
+        return option[0].toLowerCase() === selectedAnswer.toLowerCase(); // Case-insensitive comparison
+      });
+  
+      if (selectedAnswerIndex !== -1) {
+        const valueAtIndex1 = questionWithSelectedAnswer.answer[selectedAnswerIndex][1];
+        console.log(valueAtIndex1);
+      }
+    }
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+  }
+
+
   const ClickOptions = async (event) => {
+
     console.log(event.target.value);
-    setmessage(event.target.value);
+    const selectedAnswer =event.target.value;
+    // handleAnswerClick(selectedAnswer);    
+    setmessage(event.target.value + handleAnswerClick(selectedAnswer));
     sendMessage();
   }
 
@@ -84,7 +112,7 @@ export default function Client() {
         </div>
       ) : (
         <div>
-          <Chat ClickOptions = {ClickOptions} texts={chat} name={name} date={date} message = {message} onChangeHandler = {handlemessage} onClickHandler = {sendMessage} />
+          <Chat ClickOptions = {ClickOptions} texts={chat} name={name} date={date} message = {message} onChangeHandler = {handlemessage} onClickHandler = {sendMessage} currentQuestionIndex = {currentQuestionIndex} />
         </div>
       )}
     </div>
