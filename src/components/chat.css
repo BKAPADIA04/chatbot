@@ -15,12 +15,12 @@ body {
     /* background-color: #b11919; */
     /* border: 1px solid #ccc; */
     /* border-radius: 4%; */
-    max-width: 30%;
+    max-width: 24%;
     height: 600px;
     margin: 150px auto;
     position: relative;
     justify-content: flex-end; 
-    background: url('./IMAGES/chatapp-background-1.jpg');
+    background: url('./IMAGES/chatbot.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     /* border: 4px solid black; */
@@ -47,7 +47,7 @@ body {
     /* word-wrap: break-word; */
   }
   
-  #you.bg-text{ background-color: #287b2a; border-radius: 20px 5px 20px 20px; color: white; align-self: flex-end; } #other.bg-text{ background-color: #5aba00; border-radius: 5px 20px 20px; color: white; align-self: flex-start; }
+  #you.bg-text{ background-color: #0077ff; border-radius: 20px 5px 20px 20px; color: black; align-self: flex-end; } #other.bg-text{ background-color: #5aba00; border-radius: 5px 20px 20px; color: white; align-self: flex-start; }
   
   .lower_chatbox {
     display: flex;
@@ -66,17 +66,17 @@ body {
   #Input {
     width: 100%;
     padding: 10px;
-    border: 4px solid black;
+    border: 2px solid #246BFD;
     border-radius: 10px;
     /* outline: none; */
-    background: greenyellow;
+    background: #EEF4FF;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   }
   
   .sendArrow {
     cursor: pointer;
     margin-left: 10px;
-    color: black;
+    color: #246BFD;
   }
   
   /* .sendArrow:hover {

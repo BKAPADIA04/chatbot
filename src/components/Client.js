@@ -73,17 +73,17 @@ export default function Client() {
     setCurrentQuestionIndex(currentQuestionIndex + 1);
   }
 
-
+  let optionsClicked = [];
   const ClickOptions = async (event) => {
-
     console.log(event.target.value);
     const selectedAnswer =event.target.value;
+    optionsClicked.push(handleAnswerClick(selectedAnswer));
     // handleAnswerClick(selectedAnswer);    
     setmessage(event.target.value + handleAnswerClick(selectedAnswer));
     sendMessage();
   }
 
-
+  
   useEffect(() => {
     socket.on("receive_message", (data) => {
       setchat(data);
